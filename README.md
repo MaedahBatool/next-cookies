@@ -154,7 +154,7 @@ export async function getServerSideProps(context) {
 }
 ```
 
-The `context` parameter is an object which [apart from other keys](https://nextjs.org/docs/api-reference/data-fetching/get-server-side-props#context-parameter) also contains the request as `req` key. Where in Next.js, `context.req.cookies` returns a JavaScript object containing the cookies sent by the request.
+The `context` parameter is an object which [apart from other keys](https://nextjs.org/docs/api-reference/data-fetching/get-server-side-props#context-parameter) also contains the request as `req` key. In Next.js, `context.req.cookies` returns a JavaScript object containing the cookies sent by the request.
 
 ### Set and Get Cookies on the Server-side
 
@@ -189,10 +189,10 @@ export async function getServerSideProps(context) {
 
 Here's what you can do:
 
-- First get the value of cookie `name` if it exists.
-- If no cookie was set before then get value from query string `name` which a user can set like this `http://localhost:3000/server?name=Tom`
-- Now set cookie to value of the `name` query string.
-- And if no cookie was set and no query string was set, then set the cookie to a value of `Not set` for the sake of visualizing this as an example.
+- First, get the value of cookie `name` if it exists.
+- If no cookie was set before, then get value from query string `name`, which a user can set like this `http://localhost:3000/server?name=Tom`
+- Now, set a cookie to the value of the `name` query string.
+- If no cookie was set and no query string was set, then set the cookie to a value of `Not set` for the sake of visualizing this as an example.
 
 Here's the complete code for this:
 
@@ -223,10 +223,10 @@ export async function getServerSideProps(context) {
 
 ![server-side-cookies](/public/server-cookies.png)
 
-To set a cookie from the server you can use `setHeader()` function using `Set-Cookie` which is an HTTP response header that sends a cookie from the server to the user agent.
+To set a cookie from the server, you can use the `setHeader()` function using `Set-Cookie`, which is an HTTP response header that sends a cookie from the server to the user agent.
 
 ### TODO: *ADD VIDEO SET SERVER COOKIES*
 
-With that, you are now ready to `set` and `get` the values of cookies with Next.js both from the client-side and the server-side.
+With that, you are ready to `set` and `get` the value of cookies with Next.js both from the client-side and the server-side.
 
 To learn more about Next.js check out the [Learn course](https://nextjs.org/learn/basics/create-nextjs-app).

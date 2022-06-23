@@ -9,7 +9,7 @@ export default function ClientSideCookiePage() {
 
 	useEffect(() => {
 		// Get cookies & find the value of the cookie called theme.
-		const color = document.cookie
+		let color = document.cookie
 			?.split(';')
 			.find((x) => x.trim().startsWith('theme'))
 			?.split('=')[1];
@@ -22,7 +22,7 @@ export default function ClientSideCookiePage() {
 
 		// Store theme's value in state.
 		setTheme(color);
-	});
+	}, []);
 
 	// Set theme & cookie to user selected color.
 	const changeTheme = (color) => {

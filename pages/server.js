@@ -16,7 +16,7 @@ export default function ServerSideCookiePage() {
 
 		// Store the value of cookie `name` in state.
 		setName(nameFromCookie);
-	});
+	}, []);
 
 	return (
 		<div className={container}>
@@ -28,7 +28,7 @@ export default function ServerSideCookiePage() {
 
 			<main className={main}>
 				<h1 className={title}>Server-side Cookies in Next.js</h1>
-				<h2 className={h2}>Name = {name}</h2>
+				<h2 className={h2}>Name = {name || `Not set`}</h2>
 
 				<Link href="/">
 					<a className={card}>
@@ -42,22 +42,16 @@ export default function ServerSideCookiePage() {
 }
 
 export async function getServerSideProps(context) {
-	// Get the cookie `name` value if it exists.
+	// Get the value of cookie `name` if it exists.
 	let cookieName = context.req.cookies?.name;
 
-	// If cookie `name` is not set, get value from query string.
-	if (!cookieName) {
-		// Get `name` query string.
-		cookieName = context.query?.name;
-	}
-
-	// If no cookie was set before or by user via query string then set it to `Not set`.
-	if (!cookieName) {
-		cookieName = 'Not set';
-	}
+	// OPTIONAL: If user provided `name` as a query string, get it's value.
+	cookieName = context.query?.name;
 
 	// Set a cookie from the server side.
-	context.res.setHeader('Set-Cookie', `name=${cookieName}`);
+	if (cookieName) {
+		context.res.setHeader('Set-Cookie', `name=${cookieName}`);
+	}
 
 	return { props: {} };
 }
